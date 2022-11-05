@@ -1,4 +1,4 @@
-#include "Arduino.h"
+/*#include "Arduino.h"
 #include "Keyboard.h"
 #define ec2_encoderPinA PA9
 #define ec2_encoderPinB PA10
@@ -15,12 +15,13 @@ void setupEncoder2()
     pinMode(ec2_encoderPinB, INPUT_PULLUP);
     //pinMode(ec2_encoderPinBTN, INPUT_PULLUP);
 
-    attachInterrupt(ec2_encoderPinA, ec2_encoderInterrupt, CHANGE);
-    attachInterrupt(ec2_encoderPinB, ec2_encoderInterrupt, CHANGE);
+   // attachInterrupt(ec2_encoderPinA, ec2_encoderInterrupt, CHANGE);
+   // attachInterrupt(ec2_encoderPinB, ec2_encoderInterrupt, CHANGE);
 }
 int ec2_btnState = 0;
 
 void loopEncoder2(){
+    ec2_encoderInterrupt();
      if(ec2_printFlag){
         while(abs(ec2_inputDelta) > 0 ){
             if(ec2_inputDelta > 0) {
@@ -110,8 +111,8 @@ int ec2_stateMachine(bool CLK, bool DT)
 void ec2_encoderInterrupt()
 {
     bool CLK = digitalRead(ec2_encoderPinA);
-    CLK = digitalRead(ec2_encoderPinA);
+   // CLK = digitalRead(ec2_encoderPinA);
     bool DT = digitalRead(ec2_encoderPinB);
-    DT = digitalRead(ec2_encoderPinB);
+   // DT = digitalRead(ec2_encoderPinB);
     int ec2_state = ec2_stateMachine(DT, CLK);
 }

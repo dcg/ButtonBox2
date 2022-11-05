@@ -6,9 +6,9 @@ bool MOUSE_FAST =false;
 #include "Key.h"
 
 //#include <SemihostingStream.h>
-#include "./encoder.h"
-#include "./encoder2.h"
-#include "./encoder3.h"
+#include "./newEncoder.h"
+
+
 #include "./button.h"
 #include "./joystick.h"
 
@@ -38,9 +38,10 @@ void setup()
 
    
     joystickSetup();
-    setupEncoder();
-    setupEncoder2();
-    setupEncoder3();
+   // setupEncoder();
+   // setupEncoder2();
+   // setupEncoder3();
+   setupNewEncoder();
     setupButton();
     
 }
@@ -51,8 +52,9 @@ void loop()
 
 
     joystickLoop();
-   loopEncoder();
-    loopEncoder2();
-    loopEncoder3();
+   //loopEncoder();
+   // loopEncoder2();
+   // loopEncoder3();
+   loopNewEncoder();
     loopButton();
 }

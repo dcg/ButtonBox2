@@ -1,4 +1,5 @@
-#include "Arduino.h"
+
+/*#include "Arduino.h"
 #include "Keyboard.h"
 #define encoderPinA PB1 //PB14
 #define encoderPinB PB0 // PB15
@@ -15,12 +16,13 @@ void setupEncoder()
     pinMode(encoderPinB, INPUT_PULLUP);
     pinMode(encoderPinBTN, INPUT_PULLUP);
 
-    attachInterrupt(encoderPinA, ec1_encoderInterrupt, CHANGE);
-    attachInterrupt(encoderPinB, ec1_encoderInterrupt, CHANGE);
+   // attachInterrupt(encoderPinA, ec1_encoderInterrupt, CHANGE);
+   // attachInterrupt(encoderPinB, ec1_encoderInterrupt, CHANGE);
 }
 
 int btnState = 0;
 void loopEncoder(){
+    ec1_encoderInterrupt();
     if(printFlag){
         while(abs(inputDelta) > 0 ){
             if(inputDelta > 0) {
@@ -46,7 +48,7 @@ void loopEncoder(){
 
 volatile int state = 0;
 volatile unsigned long lastRun = 0;
-unsigned long PER =  200;
+unsigned long PER =  100;
 int stateMachine(bool CLK, bool DT)
 {
     unsigned long now = millis();
@@ -117,8 +119,8 @@ int stateMachine(bool CLK, bool DT)
 void ec1_encoderInterrupt()
 {
     bool CLK = digitalRead(encoderPinA);
-    CLK = digitalRead(encoderPinA);
+  //  CLK = digitalRead(encoderPinA);
     bool DT = digitalRead(encoderPinB);
-    DT = digitalRead(encoderPinB);
+  //  DT = digitalRead(encoderPinB);
     int state = stateMachine(DT, CLK);
 }

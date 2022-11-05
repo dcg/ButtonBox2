@@ -1,4 +1,4 @@
-#include "Arduino.h"
+/*#include "Arduino.h"
 #include "Keyboard.h"
 #define ec3_encoderPinA PA15
 #define ec3_encoderPinB PB5
@@ -15,12 +15,13 @@ void setupEncoder3()
     pinMode(ec3_encoderPinB, INPUT_PULLUP);
     pinMode(ec3_encoderPinBTN, INPUT_PULLUP);
 
-    attachInterrupt(ec3_encoderPinA, ec3_encoderInterrupt, CHANGE);
-    attachInterrupt(ec3_encoderPinB, ec3_encoderInterrupt, CHANGE);
+//    attachInterrupt(ec3_encoderPinA, ec3_encoderInterrupt, CHANGE);
+//    attachInterrupt(ec3_encoderPinB, ec3_encoderInterrupt, CHANGE);
 }
 int ec3_btnState = 0;
 
 void loopEncoder3(){
+  ec3_encoderInterrupt();
   if(ec3_printFlag){
         while(abs(ec3_inputDelta) > 0 ){
             if(ec3_inputDelta > 0) {
@@ -111,8 +112,8 @@ int ec3_stateMachine(bool CLK, bool DT)
 void ec3_encoderInterrupt()
 {
     bool CLK = digitalRead(ec3_encoderPinA);
-    CLK = digitalRead(ec3_encoderPinA);
+  //  CLK = digitalRead(ec3_encoderPinA);
     bool DT = digitalRead(ec3_encoderPinB);
-    DT = digitalRead(ec3_encoderPinB);
+  //  DT = digitalRead(ec3_encoderPinB);
     int ec3_state = ec3_stateMachine(DT, CLK);
 }
